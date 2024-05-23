@@ -1,0 +1,52 @@
+ "Guess the Number" game. The game randomly selects a number between 1 and 100, and the player has to guess the number. After each guess, the game provides feedback indicating whether the guess was too high, too low, or correct.
+
+
+
+the complete code for the game:
+
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+
+void playGame() {
+    int randomNumber, guess;
+    char playAgain;
+    bool correctGuess = false;
+
+    // Initialize random seed
+    std::srand(std::time(0));
+    randomNumber = std::rand() % 100 + 1;  // Random number between 1 and 100
+
+    std::cout << "Welcome to Guess the Number!\n";
+    std::cout << "I have selected a number between 1 and 100.\n";
+    std::cout << "Can you guess what it is?\n";
+
+    while (!correctGuess) {
+        std::cout << "Enter your guess: ";
+        std::cin >> guess;
+
+        if (guess < randomNumber) {
+            std::cout << "Too low! Try again.\n";
+        } else if (guess > randomNumber) {
+            std::cout << "Too high! Try again.\n";
+        } else {
+            std::cout << "Congratulations! You guessed the number!\n";
+            correctGuess = true;
+        }
+    }
+
+    std::cout << "Would you like to play again? (y/n): ";
+    std::cin >> playAgain;
+
+    if (playAgain == 'y' || playAgain == 'Y') {
+        playGame();  // Restart the game
+    } else {
+        std::cout << "Thank you for playing! Goodbye.\n";
+    }
+}
+
+int main() {
+    playGame();
+    return 0;
+}
+
